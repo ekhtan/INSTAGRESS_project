@@ -18,7 +18,7 @@ Raw reads were interleaved, filtered and shortened to 50bp (reason for this is t
 
 Aligned by using bwa-do-all on TAIR10 that includes the T-DNA insert from pCAMBIA
 
-        bwa-doall-vModules-current.py -d combined_pCAMBIA_TAIR10.fa -O -m pb -t 16
+        bwa-doall-vModules-current.py -d ~ekhtan/INSTAGRESS/genomes/combined_pCAMBIA_TAIR10.fa -O -m pb -t 16
         
 
 Used both 150bp or 50bp for alignment and it appears that the 150bp has better resolution of T-DNA edges, so used that for looking at FarPair junctions.
