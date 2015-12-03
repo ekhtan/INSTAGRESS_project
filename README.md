@@ -14,12 +14,18 @@ PCR-libraries were made using KAPA Hyper kit and 150PE sequencing performed on H
 1. Alignment of reads using bwa
 -------------------------------
 
-Raw reads were interleaved, filtered and shortened to 50bp (reason for this is that we get better mapping than 150bp reads)
+Raw reads were interleaved, filtered and shortened to 50bp (reason for this is that we get better mapping than 150bp reads).
 
-Aligned by using bwa-do-all on three genomes: TAIR10, pPVL02 and pCAMBIA
+Using example for FRAG01451 which looks to be a good candidate for instagression (based on prior analysis).
 
-        bwa-do-all
+Aligned by using bwa-do-all on TAIR10 that includes the T-DNA insert from pCAMBIA
+
+        bwa-doall-vModules-current.py -d combined_pCAMBIA_TAIR10.fa -O -m pb -t 16
         
+
+Used both 150bp or 50bp for alignment and it appears that the 150bp has better resolution of T-DNA edges, so used that for looking at FarPair junctions.
+
+###FarPairs Analysis
 
 -----
 
