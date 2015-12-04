@@ -33,26 +33,27 @@ This is a cursory look at the unique breakpoint junctions for T-DNA insertion si
           SegregatePE.py $i 5000
         done
         
-        This is an example output from the script:
-        
-          Total:
-          8278497
-          TruePairs:
-          4915803
-          Average distance of TruePairs:
-          284.656289929
-          FarPairs:
-          80677
-          OddPairs:
-          415329
-          BadPairs:
-          2866688
-          Unpaired:
-          0
-          CheckTotal:
-          8278497
-        
 
+This is an example output from the script:
+
+        
+        Total:
+        8278497
+        TruePairs:
+        4915803
+        Average distance of TruePairs:
+        284.656289929
+        FarPairs:
+        80677
+        OddPairs:
+        415329
+        BadPairs:
+        2866688
+        Unpaired:
+        0
+        CheckTotal:
+        8278497
+        
 
 Because we know that the cut sites were on Chr2 this is an example on how this data is useful:
 
@@ -80,13 +81,18 @@ Taking the LB and RB of the T-DNA insert, we will start assembling breakpoint ju
           pCAMBIA_fwa     0       500 
           pCAMBIA_fwa     6368    6868
         
-        Run binsearch algorithm
-          
-          batch-specific-junction-bin-search.py -b bins_pCAMBIA.txt -Q
+
+Run binsearch algorithm
+
         
-        Perform PRICE assembly on these extracted reads, followed by BLASTn
+        batch-specific-junction-bin-search.py -b bins_pCAMBIA.txt -Q
         
-          batch-uninterleaver-PRICE-Blaster.py ~ekhtan/INSTAGRESS/genomes/combined_pCAMBIA_TAIR10.blastn
+
+
+Perform PRICE assembly on these extracted reads, followed by BLASTn
+
+        
+        batch-uninterleaver-PRICE-Blaster.py ~ekhtan/INSTAGRESS/genomes/combined_pCAMBIA_TAIR10.blastn
         
 
 
