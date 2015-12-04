@@ -3,9 +3,7 @@ INSTAGRESS_project
 
 Instagress = **Insta**ntaneous intro**gress**ion 
 
-Experiments were performed by Soichi Inagaki.
-
-We received nine DNA samples with unique IDs FRAG01448-FRAG01456.
+Nine DNA samples with unique IDs FRAG01448-FRAG01456 were processed.
 
 PCR-libraries were made using KAPA Hyper kit and 150PE sequencing performed on HiSeq4000 by QB3.
 
