@@ -18,11 +18,36 @@ Raw reads were interleaved, filtered and shortened to 50bp (reason for this is t
 
 Aligned by using bwa-do-all on a database that has the TAIR10 reference genome as well as the T-DNA insert sequence from pCAMBIA. 
 
-*Pairs were mapped as single reads 50bp. This is important because bwa's paired-end function with salvage does not consider mis-mapping due to 'Far Pairs' and in our experience, longer reads that span unique junctions prevent proper mapping resulting in fewer informative reads.
+*Pairs were mapped as single reads 50bp for this analysis. This is important because bwa's paired-end function with salvage does not consider mis-mapping due to 'Far Pairs' and in our experience, longer reads that span unique junctions prevent proper mapping resulting in fewer informative reads (see below).
 
         bwa-doall-vModules-current.py -d ~ekhtan/INSTAGRESS/genomes/combined_pCAMBIA_TAIR10.fa -O -t 16
         
 
+Hits to pCAMBIA based on mapping using 50bp vs 150bp is shown here.
+
+        
+        Hits to pCAMBIA using 50bp: grep -c pCAM *.sam
+        FRAG01448_aln.sam:174
+        FRAG01449_aln.sam:28
+        FRAG01450_aln.sam:106
+        FRAG01451_aln.sam:1771
+        FRAG01452_aln.sam:593
+        FRAG01453_aln.sam:1170
+        FRAG01454_aln.sam:315
+        FRAG01455_aln.sam:578
+        FRAG01456_aln.sam:227
+        
+        Hits to pCAMBIA using 150bp: grep -c pCAM *.sam
+        FRAG01448_aln.sam:147
+        FRAG01449_aln.sam:24
+        FRAG01450_aln.sam:99
+        FRAG01451_aln.sam:1722
+        FRAG01452_aln.sam:522
+        FRAG01453_aln.sam:1127
+        FRAG01454_aln.sam:289
+        FRAG01455_aln.sam:520
+        FRAG01456_aln.sam:212
+        
 
 ###FarPairs Analysis
 
@@ -73,23 +98,25 @@ Because we know that the cut sites were on Chr2 this is an example on how this d
 2. Finding instagressed T-DNA sites
 -----------------------------------
 
-Taking the LB and RB of the T-DNA insert, we will start assembling breakpoint junctions from fq reads.
+Taking the LB and RB of the T-DNA insert, we will start assembling breakpoint junctions from fq reads from 500bp from the LB and RB of the pCAMBIA T-DNA as well as 500bp from the PAM sequence used to release the fragment from the insertion on Chr2.
 
-        Make a bins_pCAMBIA.txt file
+Make a bins_pCAMBIA.txt file that look like this:
+
         
-          Chrom BinStart  BinEnd
-          pCAMBIA_fwa     0       500 
-          pCAMBIA_fwa     6368    6868
+        Chrom BinStart  BinEnd
+        pCAMBIA_fwa     0       500 
+        pCAMBIA_fwa     6368    6868
+        Chr2    74785   75285
+        Chr2    75639   76139
         
 
-Run binsearch algorithm
+Run binsearch algorithm.
 
         
         batch-specific-junction-bin-search.py -b bins_pCAMBIA.txt -Q
         
 
-
-Perform PRICE assembly on these extracted reads, followed by BLASTn
+Perform PRICE assembly on these extracted reads, followed by BLASTn.
 
         
         batch-uninterleaver-PRICE-Blaster.py ~ekhtan/INSTAGRESS/genomes/combined_pCAMBIA_TAIR10.blastn
