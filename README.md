@@ -12,11 +12,11 @@ PCR-libraries were made using KAPA Hyper kit and 150PE sequencing performed on H
 1. Alignment of reads using bwa
 -------------------------------
 
-Raw reads were interleaved, filtered and shortened to 50bp (reason for this is that we get better mapping than 150bp reads).
+Raw reads were interleaved, filtered and shortened to 50bp.
 
 Aligned by using bwa-do-all on a database that has the TAIR10 reference genome as well as the T-DNA insert sequence from pCAMBIA. 
 
-*Pairs were mapped as single reads 50bp for this analysis. This is important because bwa's paired-end function with salvage does not consider mis-mapping due to 'Far Pairs' and in our experience, longer reads that span unique junctions prevent proper mapping resulting in fewer informative reads (see below).
+*Pairs were mapped as single reads for this analysis. This is important because bwa's paired-end function with salvage does not consider mis-mapping due to 'Far Pairs' and in our experience, and using longer reads that span unique junctions prevent proper mapping resulting in fewer informative reads (see data below).
 
         bwa-doall-vModules-current.py -d ~ekhtan/INSTAGRESS/genomes/combined_pCAMBIA_TAIR10.fa -O -t 16
         
@@ -108,7 +108,7 @@ Make a bins_pCAMBIA.txt file that look like this:
         Chr2    75639   76139
         
 
-Run binsearch algorithm.
+Run binsearch algorithm. Note that the full 150bp PE fq files are used in conjunction with sam files that were mapped based on 50bp reads.
 
         
         batch-specific-junction-bin-search.py -b bins_pCAMBIA.txt -Q
