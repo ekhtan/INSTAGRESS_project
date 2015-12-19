@@ -57,7 +57,7 @@ This is a cursory look at the unique breakpoint junctions for T-DNA insertion si
         done
         
 
-This is an example output from the script:
+This is an example output from the script for FRAG01451:
 
         
         Total:
@@ -96,7 +96,7 @@ Because we know that the cut sites were on Chr2 this is an example on how this d
 2. Finding instagressed T-DNA sites
 -----------------------------------
 
-Taking the LB and RB of the T-DNA insert, we will start assembling breakpoint junctions from fq reads from 500bp from the LB and RB of the pCAMBIA T-DNA as well as 500bp from the PAM sequence used to release the fragment from the insertion on Chr2.
+Taking the LB and RB of the T-DNA insert, we will start assembling breakpoint junctions from the fq reads from 500bp from the LB and RB of the pCAMBIA T-DNA sequence.
 
 Make a bins_pCAMBIA.txt file that look like this:
 
@@ -104,8 +104,6 @@ Make a bins_pCAMBIA.txt file that look like this:
         Chrom BinStart  BinEnd
         pCAMBIA_fwa     0       500 
         pCAMBIA_fwa     6368    6868
-        Chr2    74785   75285
-        Chr2    75639   76139
         
 
 Run binsearch algorithm. Note that the full 150bp PE fq files are used in conjunction with sam files that were mapped based on 50bp reads.
@@ -120,5 +118,38 @@ Perform PRICE assembly on these extracted reads, followed by BLASTn.
         batch-uninterleaver-PRICE-Blaster.py ~ekhtan/INSTAGRESS/genomes/combined_pCAMBIA_TAIR10.blastn
         
 
+Example of Blastn ouput that shows the potential integration sites, but match the original T-DNA
 
+        # BLASTN 2.2.31+
+        # Query: contig_2 (841nt) unchanged
+        # Database: /home/ekhtan/INSTAGRESS/genomes/combined_pCAMBIA_TAIR10.blastn
+        # Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+        # 3 hits found
+        contig_2        pCAMBIA_fwa     100.00  422     0       0       420     841     6597    6176    0.0     780
+        contig_2        pCAMBIA_fwa     99.13   231     2       0       349     579     47      277     4e-115  416
+        contig_2        Chr2    100.00  324     0       0       1       324     75715   75392   3e-170  599
+        # BLASTN 2.2.31+
+        # Query: contig_3 (621nt) unchanged
+        # Database: /home/ekhtan/INSTAGRESS/genomes/combined_pCAMBIA_TAIR10.blastn
+        # Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+        # 3 hits found
+        contig_3        pCAMBIA_fwa     100.00  488     0       0       134     621     21      508     0.0     902
+        contig_3        pCAMBIA_fwa     98.75   160     2       0       231     390     6597    6438    8e-76   285
+        contig_3        Chr2    100.00  119     0       0       1       119     75259   75377   2e-56   220
+        
+
+Original insertion site is at Chr2:752,377 and Chr2:752,392 at to LB of pCAMBIA, suggesting the T-DNA is inserted as a tandem inverted repeat.
+
+If real, that means the introgression is via the HR pathway/gene conversion (?), and not through NHEJ-associated cut and paste.
+
+Two out of the nine lines sequenced (FRAG01451 - plant #12 and FRAG01453 - plant #18) have junction support for an instagress-event on the targeted site on Chr2.
+
+-------
+
+3. Caveats
+----------
+
+The sgRNA cut sites also contain ~100bp of Chr2 of the 'donor' integrated pCAMBIA T-DNA from GFP-tailswap parent. Therefore, reconstruction using 150 bp PE reads and PRICE assembly did not yield a clear picture although the majority shows the event as described above.
+
+Solution: PCR oligos 500bp outside the PAM sites for Sanger sequencing has been ordered.
 
