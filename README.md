@@ -149,7 +149,7 @@ Two out of the nine lines sequenced (FRAG01451 - plant #12 and FRAG01453 - plant
 3. Caveats
 ----------
 
-The sgRNA cut sites also contain ~100bp of Chr2 of the 'donor' integrated pCAMBIA T-DNA from GFP-tailswap parent. Therefore, reconstruction using 150 bp PE reads and PRICE assembly did not yield a clear picture although the majority shows the event as described above.
+The sgRNA cut sites also contain ~100bp of Chr2 as part of 'donor' pCAMBIA T-DNA from GFP-tailswap parent. Therefore, reconstruction using 150 bp PE reads and PRICE assembly did not yield a clear picture although the majority shows the event as described above.
 
 Solution: PCR oligos 500bp outside the PAM sites for Sanger sequencing has been ordered.
 
