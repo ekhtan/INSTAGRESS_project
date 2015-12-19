@@ -118,7 +118,7 @@ Perform PRICE assembly on these extracted reads, followed by BLASTn.
         batch-uninterleaver-PRICE-Blaster.py ~ekhtan/INSTAGRESS/genomes/combined_pCAMBIA_TAIR10.blastn
         
 
-Example of Blastn ouput that shows the potential integration sites, but match the original T-DNA
+Example of Blastn ouput that shows the potential integration sites, which matches the original T-DNA integration sites
 
         # BLASTN 2.2.31+
         # Query: contig_2 (841nt) unchanged
