@@ -138,7 +138,7 @@ Example of Blastn ouput that shows the potential integration sites, which matche
         contig_3        Chr2    100.00  119     0       0       1       119     75259   75377   2e-56   220
         
 
-Original insertion site is at Chr2:752,377 and Chr2:752,392 at to LB of pCAMBIA, suggesting the T-DNA is inserted as a tandem inverted repeat.
+Original insertion site is at Chr2:752,377 to LB and Chr2:752,392 at to RB of pCAMBIA from what I can tell.
 
 If real, that means the introgression is via the HR pathway/gene conversion (?), and not through NHEJ-associated cut and paste.
 
